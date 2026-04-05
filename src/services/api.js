@@ -2,7 +2,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 const API = axios.create({
-  baseURL: "https://hisabsetu-backend.onrender.com/api"
+  baseURL: import.meta.env.VITE_API_BASE_URL
 });
 
 // 🔥 REQUEST INTERCEPTOR
