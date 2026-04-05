@@ -5,7 +5,7 @@ const API = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL
 });
 
-// 🔥 REQUEST INTERCEPTOR
+//  REQUEST INTERCEPTOR
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("accessToken");
 
@@ -16,14 +16,14 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-// 🔥 RESPONSE INTERCEPTOR (AUTO REFRESH)
+//  RESPONSE INTERCEPTOR (AUTO REFRESH)
 API.interceptors.response.use(
   (res) => res,
   async (error) => {
 
     const originalRequest = error.config;
 
-    // 🔥 prevent infinite loop
+    //  prevent infinite loop
     if (error.response?.status === 401 && !originalRequest._retry) {
 
       originalRequest._retry = true;
@@ -43,15 +43,15 @@ API.interceptors.response.use(
 
         const newAccessToken = res.data.accessToken;
 
-        // 🔥 STORE NEW TOKENS
+        //  STORE NEW TOKENS
         localStorage.setItem("accessToken", newAccessToken);
         localStorage.setItem("refreshToken", res.data.refreshToken);
 
-        // 🔥 UPDATE ROLE AGAIN
+        //  UPDATE ROLE AGAIN
         const decoded = jwtDecode(newAccessToken);
         localStorage.setItem("role", decoded.role);
 
-        // 🔥 RETRY ORIGINAL REQUEST
+        //  RETRY ORIGINAL REQUEST
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         return API(originalRequest);
@@ -68,7 +68,7 @@ API.interceptors.response.use(
 export const createAdmin = (data) =>
   API.post("/admin/create-admin", data);
 
-// 🔥 LOGOUT HELPER
+// LOGOUT HELPER
 const logout = () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
