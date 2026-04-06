@@ -1,8 +1,10 @@
 {
+  "framework": "vite",
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "framework": "vite",
-  "env": {
-    "NODE_VERSION": "18"
+  "functions": {
+    "api/**": {
+      "runtime": "nodejs18.x"
+    }
   }
 }
