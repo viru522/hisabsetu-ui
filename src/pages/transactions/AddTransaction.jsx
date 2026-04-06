@@ -32,7 +32,7 @@ export default function AddTransaction() {
         note: data.note || "",
       };
 
-      console.log("Sending payload:", payload);
+      // console.log("Sending payload:", payload);
 
       await addTransaction(payload);
 

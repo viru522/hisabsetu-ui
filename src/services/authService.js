@@ -1,18 +1,16 @@
+
 import API from "./api";
 import { jwtDecode } from "jwt-decode";
 
-//  LOGIN
-  export const login = async (data) => {
+// LOGIN
+export const login = async (data) => {
   const res = await API.post("/auth/login", data);
 
-  const accessToken = res.data.accessToken;
-  const refreshToken = res.data.refreshToken;
+  const { accessToken, refreshToken } = res.data;
 
-  //  STORE TOKENS
   localStorage.setItem("accessToken", accessToken);
   localStorage.setItem("refreshToken", refreshToken);
 
-  // STORE ROLE
   const decoded = jwtDecode(accessToken);
   localStorage.setItem("role", decoded.role);
 
@@ -20,8 +18,7 @@ import { jwtDecode } from "jwt-decode";
 };
 
 // LOGOUT
-  export const logout = () => {
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
-  localStorage.removeItem("role");
+export const logout = () => {
+  localStorage.clear();
+  window.location.href = "/login";
 };
