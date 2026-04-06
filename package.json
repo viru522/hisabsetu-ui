@@ -15,23 +15,22 @@
   },
 
   "dependencies": {
-    "vite": "5.2.0",
     "axios": "^1.14.0",
     "file-saver": "^2.0.5",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
     "jwt-decode": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-hook-form": "^7.72.0",
-    "react-router-dom": "^6.23.0",
+    "react-router-dom": "6.23.0",
     "recharts": "^3.8.1",
     "xlsx": "^0.18.5",
     "zustand": "^5.0.12"
   },
 
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.0",
+    "@vitejs/plugin-react": "4.2.0",
 
     "@eslint/js": "^9.39.4",
     "@types/react": "^18.2.66",
