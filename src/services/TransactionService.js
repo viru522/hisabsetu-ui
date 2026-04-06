@@ -1,4 +1,4 @@
-import API from "./Api";
+import API from "./api";
 
 // 🔥 FILTER (CLEAN PARAMS)
 export const filterTransactions = ({

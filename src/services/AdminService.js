@@ -1,4 +1,4 @@
-import API from "./Api";
+import API from "./api";
 
 export const getUsers = () =>
   API.get("/admin/users");
