@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 
-// 🔥 CHECK LOGIN + EXPIRY
+// AUTH CHECK
 export const isAuthenticated = () => {
   const token = localStorage.getItem("accessToken");
 
@@ -9,17 +9,31 @@ export const isAuthenticated = () => {
   try {
     const decoded = jwtDecode(token);
 
-    return decoded.exp * 1000 > Date.now(); // expiry check
+    if (!decoded?.exp) return false;
+
+    return decoded.exp * 1000 > Date.now();
 
   } catch {
     return false;
   }
 };
 
-// 🔥 GET ROLE
+// GET ROLE FROM TOKEN
 export const getRole = () => {
-  return localStorage.getItem("role");
+  const token = localStorage.getItem("accessToken");
+
+  if (!token) return null;
+
+  try {
+    const decoded = jwtDecode(token);
+    return decoded?.role;
+  } catch {
+    return null;
+  }
 };
 
-export const isAdmin = () =>
-  localStorage.getItem("role") === "ROLE_ADMIN";
+// ADMIN CHECK
+export const isAdmin = () => {
+  const role = getRole();
+  return role === "ROLE_ADMIN" || role === "ADMIN";
+};
