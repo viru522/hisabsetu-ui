@@ -1,4 +1,4 @@
-import API from "./api";
+import API from "./Api";
 import { jwtDecode } from "jwt-decode";
 
 // 🔥 LOGIN
