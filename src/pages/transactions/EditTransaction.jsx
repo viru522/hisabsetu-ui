@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTransactionStore } from "../../store/useTransactionStore";
 import TransactionForm from "../../components/transactions/TransactionForm";
-import API from "../../services/api";
+import API from "../../services/Api";
 
 export default function EditTransaction() {
 
